@@ -16,11 +16,11 @@ class PaulSmithSpider(BaseSpider):
 		handleFile = open('result.html', 'wb')
 		sites = sites.select('//div[@class="grid c160 product clear"]')
 		for subsite in sites:
+			site3 = subsite.select('.//div[@class="details"]')
+			title = site3.select('h3[@class="desc"]/text()').extract()
 			hlink = subsite.select('a/@href').extract()
 			price = subsite.select('p[@class="price price-GBP"]/text()').extract()
 			image = subsite.select('a/img[@class="default"]/@src').extract()
-			site3 = subsite.select('.//div[@class="details"]')
-			title = site3.select('h3[@class="desc"]/text()').extract()
 
 			handleFile.write('<div><div style="width:150px;float:left;text-align:center">\
 <img src="%s" alt=""/><br />\
