@@ -14,8 +14,8 @@ class PaulSmithSpider(BaseSpider):
 
 		random.shuffle(sites)
 		handleFile = open('result.html', 'wb')
-		site2 = sites.select('//div[@class="grid c160 product clear"]')
-		for subsite in site2:
+		sites = sites.select('//div[@class="grid c160 product clear"]')
+		for subsite in sites:
 			hlink = subsite.select('a/@href').extract()
 			price = subsite.select('p[@class="price price-GBP"]/text()').extract()
 			image = subsite.select('a/img[@class="default"]/@src').extract()
